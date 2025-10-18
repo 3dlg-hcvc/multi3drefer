@@ -6,7 +6,7 @@
 
 This is the official implementation for [Multi3DRefer: Grounding Text Description to Multiple 3D Objects](https://3dlg-hcvc.github.io/multi3drefer/).
 
-![Model Architecture](./docs/img/model_arch.jpg)
+![Model Architecture](./docs/assets/method-cb37fa43.jpg)
 
 ## Requirement
 This repo contains [CUDA](https://developer.nvidia.com/cuda-zone) implementation, please make sure your [GPU compute capability](https://developer.nvidia.com/cuda-gpus) is at least 3.0 or above.
