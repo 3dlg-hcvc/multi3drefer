@@ -63,3 +63,5 @@ dataset/nr3d/metadata/*
 dataset/multi3drefer/metadata/*
 
 benchmark
+
+.DS_Store/
