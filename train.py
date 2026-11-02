@@ -32,7 +32,7 @@ def main(cfg):
 
     # load the pre-trained detector
     if "detector_path" in cfg:
-        detector_weights = torch.load(cfg.detector_path)["state_dict"]
+        detector_weights = torch.load(cfg.detector_path, weights_only=True)["state_dict"]
         model.detector.load_state_dict(detector_weights)
 
     # initialize logger

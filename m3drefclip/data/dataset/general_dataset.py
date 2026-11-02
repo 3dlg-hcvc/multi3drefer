@@ -32,7 +32,7 @@ class GeneralDataset(Dataset):
         self.all_scene_data = {}
         for scene_id in tqdm(self.scene_ids, desc=f"Loading {self.split} data from disk"):
             scene_path = os.path.join(scene_data_path, self.split, f"{scene_id}.pth")
-            scene_data = torch.load(scene_path)
+            scene_data = torch.load(scene_path, weights_only=True)
             scene_data["rgb"] = scene_data["rgb"].astype(np.float32) / 127.5 - 1  # scale rgb to [-1, 1]
             self.all_scene_data[scene_id] = scene_data
 
