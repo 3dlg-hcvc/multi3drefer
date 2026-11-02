@@ -16,7 +16,7 @@ def generate_gt_scanrefer(split, lang_input_path, scene_root_path):
         scene_id = query["scene_id"]
         scene_ids[scene_id] = True
         object_id = int(query["object_id"])
-        scene_data = torch.load(os.path.join(scene_root_path, split, f"{scene_id}.pth"))
+        scene_data = torch.load(os.path.join(scene_root_path, split, f"{scene_id}.pth"), weights_only=True)
         object_ids = [object_id]
         corners = scene_data["aabb_corner_xyz"][np.in1d(scene_data["aabb_obj_ids"], np.array(object_ids))]
         aabb_min_max_bound = np.stack((corners.min(1), corners.max(1)), axis=1)
@@ -36,7 +36,7 @@ def generate_gt_multi3drefer(split, lang_input_path, scene_root_path):
     for query in tqdm(raw_data, desc="Initializing ground truths"):
         scene_id = query["scene_id"]
         scene_ids[scene_id] = True
-        scene_data = torch.load(os.path.join(scene_root_path, split, f"{scene_id}.pth"))
+        scene_data = torch.load(os.path.join(scene_root_path, split, f"{scene_id}.pth"), weights_only=True)
         object_ids = query["object_ids"]
         corners = scene_data["aabb_corner_xyz"][np.in1d(scene_data["aabb_obj_ids"], np.array(object_ids))]
         aabb_min_max_bound = np.stack((corners.min(1), corners.max(1)), axis=1)
@@ -69,7 +69,7 @@ def generate_gt_nr3d(split, lang_input_path, scene_root_path):
         else:
             tmp_ann_id_count[scene_obj_key] += 1
 
-        scene_data = torch.load(os.path.join(scene_root_path, split, f"{scene_id}.pth"))
+        scene_data = torch.load(os.path.join(scene_root_path, split, f"{scene_id}.pth"), weights_only=True)
         object_ids = [object_id]
         corners = scene_data["aabb_corner_xyz"][np.in1d(scene_data["aabb_obj_ids"], np.array(object_ids))]
         aabb_min_max_bound = np.stack((corners.min(1), corners.max(1)), axis=1)
